@@ -403,8 +403,9 @@ const FLAGS = {
 const teams = [
   {
     name: "Ferrari",
+      subtitle: "Scuderia",
     country: "Italy",
-    direction: "Classic Rosso Scuderia, gloss finish. White accents. Giallo Modena yellow highlights. No blue HP logo.",
+    direction: "Classic Rosso Scuderia, gloss finish. White accents. Giallo Modena yellow highlights. No HP.",
     colors: {
       primary: { name: "Rosso Scuderia", hex: "#DC0000" },
       accent: { name: "White", hex: "#FFFFFF" },
@@ -421,6 +422,7 @@ const teams = [
   },
   {
     name: "McLaren",
+    subtitle: "Papaya Rules",
     country: "United Kingdom",
     direction: "100% papaya orange. No secondary color blocks. Black only where structurally unavoidable.",
     colors: {
@@ -458,8 +460,8 @@ const teams = [
   {
     name: "Red Bull",
     country: "Austria",
-    subtitle: "2026 Throwback",
-    direction: "Gloss racing blue with red and yellow logos/highlights. The 2026 actual — a throwback to 2005 debut.",
+    subtitle: "2005 Throwback",
+    direction: "Gloss racing blue with red and yellow logos, highlights. A throwback to RB's 2005 debut.",
     colors: {
       primary: { name: "Racing Blue", hex: "#2245A8" },
       accent: { name: "Red Bull Red", hex: "#CC1E4A" },
@@ -477,6 +479,7 @@ const teams = [
   },
   {
     name: "Mercedes",
+    subtitle: "Silver Arrows",
     country: "Germany",
     direction: "Full silver anodized aluminum finish. Reclaiming 'Silver Arrows' literally. Teal for numbers and small highlights only.",
     colors: {
@@ -493,6 +496,7 @@ const teams = [
   },
   {
     name: "Racing Bulls",
+    subtitle: "Toro Rosso",
     country: "Italy",
     direction: "White dominant with elevated Ford blue. Red Bull logo colors restricted to nose cone and airbox only.",
     colors: {
@@ -514,6 +518,7 @@ const teams = [
   },
   {
     name: "Aston Martin",
+    subtitle: "Britmaxxing",
     country: "United Kingdom",
     direction: "Satin British Racing Green wall-to-wall. Silver accents only. No lime green.",
     colors: {
@@ -530,6 +535,7 @@ const teams = [
   },
   {
     name: "Alpine",
+    subtitle: "Bubblegum Pop",
     country: "France",
     direction: "Glossy bubblegum pink dominant (~70%). Alpine blue as secondary (~30%). White logos and numbers.",
     colors: {
@@ -548,8 +554,8 @@ const teams = [
   },
   {
     name: "Duracell Racing",
+        subtitle: "fka Williams",
     country: "United Kingdom",
-    subtitle: "fka Williams",
     direction: "The entire car is a Duracell battery. Copper front third, black rear two-thirds. Hard cut, no gradient.",
     colors: {
       primary: { name: "Anthracite Anode", hex: "#1A1A1A" },
@@ -566,17 +572,18 @@ const teams = [
   },
   {
     name: "Haas",
+    subtitle: "Stars and Stripes",
     country: "United States",
     direction: "Red, white, and blue — finally leaning into being the American team. Toyota red does double duty.",
     colors: {
       primary: { name: "White", hex: "#FFFFFF" },
       secondary: { name: "Toyota Red", hex: "#CE0E2D" },
-      accent: { name: "American Blue", hex: "#002868" },
+      accent: { name: "Union Blue", hex: "#002868" },
     },
     legend: [
       { shape: "■", name: "White", hex: "#FFFFFF" },
       { shape: "◣", name: "Toyota Red", hex: "#CE0E2D" },
-      { shape: "▬", name: "American Blue", hex: "#002868" },
+      { shape: "▬", name: "Union Blue", hex: "#002868" },
     ],
     finish: "Gloss",
     removed: "Nothing major — blue fills the identity gap",
@@ -603,6 +610,7 @@ const teams = [
   },
   {
     name: "Cadillac",
+    subtitle: "Gold Standard",
     country: "United States",
     direction: "Full glossy yellow. Classic Cadillac crest on rear body/fin. Red and blue from the crest as accents.",
     colors: {
