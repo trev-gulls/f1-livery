@@ -147,12 +147,88 @@ function SwatchCadillac({ colors }) {
   );
 }
 
+// ─── FLAG RENDERERS ─────────────────────────────────────────────────
+
+function FlagItaly() {
+  return (
+    <svg width="20" height="14" viewBox="0 0 3 2" aria-hidden="true">
+      <rect width="1" height="2" fill="#009246" />
+      <rect x="1" width="1" height="2" fill="#fff" />
+      <rect x="2" width="1" height="2" fill="#CE2B37" />
+    </svg>
+  );
+}
+
+function FlagUK() {
+  return (
+    <svg width="20" height="14" viewBox="0 0 60 30" aria-hidden="true">
+      <rect width="60" height="30" fill="#012169" />
+      <path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" strokeWidth="6" />
+      <path d="M0,0 L60,30 M60,0 L0,30" stroke="#C8102E" strokeWidth="2" />
+      <path d="M30,0 V30 M0,15 H60" stroke="#fff" strokeWidth="10" />
+      <path d="M30,0 V30 M0,15 H60" stroke="#C8102E" strokeWidth="6" />
+    </svg>
+  );
+}
+
+function FlagAustria() {
+  return (
+    <svg width="20" height="14" viewBox="0 0 3 2" aria-hidden="true">
+      <rect width="3" height="2" fill="#ED2939" />
+      <rect y="0.667" width="3" height="0.667" fill="#fff" />
+    </svg>
+  );
+}
+
+function FlagGermany() {
+  return (
+    <svg width="20" height="14" viewBox="0 0 5 3" aria-hidden="true">
+      <rect width="5" height="1" fill="#000" />
+      <rect y="1" width="5" height="1" fill="#DD0000" />
+      <rect y="2" width="5" height="1" fill="#FFCC00" />
+    </svg>
+  );
+}
+
+function FlagFrance() {
+  return (
+    <svg width="20" height="14" viewBox="0 0 3 2" aria-hidden="true">
+      <rect width="1" height="2" fill="#002395" />
+      <rect x="1" width="1" height="2" fill="#fff" />
+      <rect x="2" width="1" height="2" fill="#ED2939" />
+    </svg>
+  );
+}
+
+function FlagUSA() {
+  return (
+    <svg width="20" height="14" viewBox="0 0 190 100" aria-hidden="true">
+      {[0, 2, 4, 6, 8, 10, 12].map((i) => (
+        <rect key={i} y={i * 7.69} width="190" height="7.69" fill="#B22234" />
+      ))}
+      {[1, 3, 5, 7, 9, 11].map((i) => (
+        <rect key={i} y={i * 7.69} width="190" height="7.69" fill="#fff" />
+      ))}
+      <rect width="76" height="53.85" fill="#3C3B6E" />
+    </svg>
+  );
+}
+
+const FLAGS = {
+  Italy: FlagItaly,
+  "United Kingdom": FlagUK,
+  Austria: FlagAustria,
+  Germany: FlagGermany,
+  France: FlagFrance,
+  "United States": FlagUSA,
+};
+
 // ─── TEAM DATA ───────────────────────────────────────────────────────
 
 const teams = [
   {
     name: "Ferrari",
-    flag: "\u{1F1EE}\u{1F1F9}",
+    country: "Italy",
     direction: "Classic Rosso Scuderia, gloss finish. White accents. Giallo Modena yellow highlights. No blue HP logo.",
     colors: {
       primary: { name: "Rosso Scuderia", hex: "#DC0000" },
@@ -170,7 +246,7 @@ const teams = [
   },
   {
     name: "McLaren",
-    flag: "\u{1F1EC}\u{1F1E7}",
+    country: "United Kingdom",
     direction: "100% papaya orange. No secondary color blocks. Black only where structurally unavoidable.",
     colors: {
       primary: { name: "Papaya Orange", hex: "#FF8000" },
@@ -206,7 +282,7 @@ const teams = [
   ── end Option A ── */
   {
     name: "Red Bull",
-    flag: "\u{1F1E6}\u{1F1F9}",
+    country: "Austria",
     subtitle: "2026 Throwback",
     direction: "Gloss racing blue with red and yellow logos/highlights. The 2026 actual — a throwback to 2005 debut.",
     colors: {
@@ -225,7 +301,7 @@ const teams = [
   },
   {
     name: "Mercedes",
-    flag: "\u{1F1E9}\u{1F1EA}",
+    country: "Germany",
     direction: "Full silver anodized aluminum finish. Reclaiming 'Silver Arrows' literally. Teal for numbers and small highlights only.",
     colors: {
       primary: { name: "Anodized Aluminum", hex: "#C0C0C0" },
@@ -241,7 +317,7 @@ const teams = [
   },
   {
     name: "Racing Bulls",
-    flag: "\u{1F1EE}\u{1F1F9}",
+    country: "Italy",
     direction: "White dominant with elevated Ford blue. Red Bull logo colors restricted to nose cone and airbox only.",
     colors: {
       primary: { name: "White", hex: "#FFFFFF" },
@@ -251,8 +327,9 @@ const teams = [
     },
     legend: [
       { shape: "■", name: "White", hex: "#FFFFFF" },
+      { shape: "▬", name: "RB Red", hex: "#CC1E4A" },
       { shape: "◣", name: "Ford Blue", hex: "#003DA5" },
-      { shape: "▬", name: "RB Accent", hex: "split" },
+      { shape: "▬", name: "RB Yellow", hex: "#FFC906" },
     ],
     finish: "Gloss",
     removed: "Decorative red/yellow, carbon fiber aesthetic",
@@ -260,7 +337,7 @@ const teams = [
   },
   {
     name: "Aston Martin",
-    flag: "\u{1F1EC}\u{1F1E7}",
+    country: "United Kingdom",
     direction: "Satin British Racing Green wall-to-wall. Silver accents only. No lime green.",
     colors: {
       primary: { name: "British Racing Green", hex: "#005C2D" },
@@ -276,7 +353,7 @@ const teams = [
   },
   {
     name: "Alpine",
-    flag: "\u{1F1EB}\u{1F1F7}",
+    country: "France",
     direction: "Glossy bubblegum pink dominant (~70%). Alpine blue as secondary (~30%). White logos and numbers.",
     colors: {
       primary: { name: "BWT Pink", hex: "#F596C8" },
@@ -294,7 +371,7 @@ const teams = [
   },
   {
     name: "Duracell Racing",
-    flag: "\u{1F1EC}\u{1F1E7}",
+    country: "United Kingdom",
     subtitle: "fka Williams",
     direction: "The entire car is a Duracell battery. Copper front third, black rear two-thirds. Hard cut, no gradient.",
     colors: {
@@ -312,7 +389,7 @@ const teams = [
   },
   {
     name: "Haas",
-    flag: "\u{1F1FA}\u{1F1F8}",
+    country: "United States",
     direction: "Red, white, and blue — finally leaning into being the American team. Toyota red does double duty.",
     colors: {
       primary: { name: "White", hex: "#FFFFFF" },
@@ -330,7 +407,7 @@ const teams = [
   },
   {
     name: "Audi",
-    flag: "\u{1F1E9}\u{1F1EA}",
+    country: "Germany",
     subtitle: "Landscape Livery",
     direction: "Sunset gradient nose to tail — amber horizon through peach and coral into dusky lilac. Matte. Inspired by Audi's landscape advertising.",
     colors: {
@@ -349,7 +426,7 @@ const teams = [
   },
   {
     name: "Cadillac",
-    flag: "\u{1F1FA}\u{1F1F8}",
+    country: "United States",
     direction: "Full glossy yellow. Classic Cadillac crest on rear body/fin. Red and blue from the crest as accents.",
     colors: {
       primary: { name: "Cadillac Gold", hex: "#F5C518" },
@@ -398,64 +475,52 @@ function LiverySwatch({ team }) {
   );
 }
 
-function SwatchLegend({ legend }) {
+function LegendSwatch({ hex }) {
+  const special = hex === "gradient" || hex === "chrome";
+  const bg =
+    hex === "gradient"
+      ? "linear-gradient(0deg, #E8961F, #D4727A, #9882AC)"
+      : hex === "chrome"
+        ? "linear-gradient(90deg, #888 0%, #F0F0F0 30%, #999 50%, #FAFAFA 75%, #AAA 100%)"
+        : undefined;
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+    <div
+      aria-hidden="true"
+      style={{
+        width: 10,
+        height: 10,
+        borderRadius: 2,
+        ...(special ? { background: bg } : { backgroundColor: hex }),
+        border: hex === "gradient" ? undefined : "1px solid rgba(255,255,255,0.1)",
+        flexShrink: 0,
+      }}
+    />
+  );
+}
+
+function LegendItem({ c }) {
+  const isSpecial = c.hex === "gradient" || c.hex === "chrome";
+  return (
+    <div style={{ display: "flex", alignItems: "center", gap: 6, minWidth: 0, flexWrap: "wrap", overflow: "hidden", height: 13, fontFamily: "'DM Mono', monospace", fontSize: "0.625rem", lineHeight: 1.3 }}>
+      <LegendSwatch hex={c.hex} />
+      <span style={{ flexShrink: 0, whiteSpace: "nowrap", color: "#ccc", fontWeight: 500 }}>{c.name}</span>
+      {!isSpecial && <span style={{ flexShrink: 0, whiteSpace: "nowrap", color: "#8a8a8a" }}>{c.hex}</span>}
+    </div>
+  );
+}
+
+function SwatchLegend({ legend }) {
+  const useGrid = legend.length >= 4;
+  return (
+    <div
+      style={
+        useGrid
+          ? { display: "grid", gridTemplateColumns: "auto 1fr", gap: "4px 12px" }
+          : { display: "flex", flexDirection: "column", gap: 4 }
+      }
+    >
       {legend.map((c, i) => (
-        <div key={i} style={{ display: "flex", alignItems: "center", gap: 6 }}>
-          {c.hex === "gradient" ? (
-            <div
-              aria-hidden="true"
-              style={{
-                width: 10,
-                height: 10,
-                borderRadius: 2,
-                background: "linear-gradient(0deg, #E8961F, #D4727A, #9882AC)",
-                flexShrink: 0,
-              }}
-            />
-          ) : c.hex === "split" ? (
-            <div
-              aria-hidden="true"
-              style={{
-                width: 10,
-                height: 10,
-                borderRadius: 2,
-                background: "linear-gradient(90deg, #CC1E4A 50%, #FFC906 50%)",
-                border: "1px solid rgba(255,255,255,0.1)",
-                flexShrink: 0,
-              }}
-            />
-          ) : c.hex === "chrome" ? (
-            <div
-              aria-hidden="true"
-              style={{
-                width: 10,
-                height: 10,
-                borderRadius: 2,
-                background: "linear-gradient(90deg, #888 0%, #F0F0F0 30%, #999 50%, #FAFAFA 75%, #AAA 100%)",
-                border: "1px solid rgba(255,255,255,0.1)",
-                flexShrink: 0,
-              }}
-            />
-          ) : (
-            <div
-              aria-hidden="true"
-              style={{
-                width: 10,
-                height: 10,
-                borderRadius: 2,
-                backgroundColor: c.hex,
-                border: "1px solid rgba(255,255,255,0.1)",
-                flexShrink: 0,
-              }}
-            />
-          )}
-          <span style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.625rem", color: "#888", lineHeight: 1.3 }}>
-            <span style={{ color: "#ccc", fontWeight: 500 }}>{c.name}</span>{" "}
-            {!["gradient", "split", "chrome"].includes(c.hex) && <span style={{ color: "#8a8a8a" }}>{c.hex}</span>}
-          </span>
-        </div>
+        <LegendItem key={i} c={c} />
       ))}
     </div>
   );
@@ -519,9 +584,13 @@ function TeamCard({ team }) {
             {team.subtitle}
           </div>
         )}
-        {team.flag && (
-          <div style={{ fontSize: "1rem", lineHeight: 1, flexShrink: 0, marginLeft: "auto" }}>
-            {team.flag}
+        {team.country && FLAGS[team.country] && (
+          <div
+            role="img"
+            aria-label={team.country}
+            style={{ lineHeight: 0, flexShrink: 0, marginLeft: "auto" }}
+          >
+            {(() => { const Flag = FLAGS[team.country]; return <Flag />; })()}
           </div>
         )}
       </div>

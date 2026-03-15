@@ -23,9 +23,10 @@ bun run preview   # Preview production build
 
 Single-component design. Everything lives in `f1-livery-designs.jsx`:
 
-- **Team data array** — 11 team objects with colors, legend, finish, direction text, flag emoji
+- **Team data array** — 11 team objects with colors, legend, finish, direction text, country
+- **Flag renderers** — Inline SVG components for 6 countries (FlagItaly, FlagUK, FlagAustria, FlagGermany, FlagFrance, FlagUSA) with `FLAGS` lookup map
 - **Swatch renderers** — SVG components per team (SwatchDefault, SwatchFerrari, SwatchRedBull, SwatchRacingBulls, SwatchDuracell, SwatchHaas, SwatchAudi, SwatchAlpine, SwatchAstonMartin, SwatchCadillac)
-- **Card components** — LiverySwatch, SwatchLegend, TeamCard
+- **Card components** — LiverySwatch, LegendSwatch, LegendItem, SwatchLegend, TeamCard
 - **Root export** — `F1LiveryDesigns` renders header, grid, footer
 
 ## Conventions
