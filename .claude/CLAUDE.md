@@ -15,15 +15,17 @@ bun run preview   # Preview production build
 
 | File | Purpose |
 |------|---------|
-| `src/f1-livery-designs.jsx` | Main component — team data, swatch renderers, card layout |
+| `src/teams.json` | Team data — colors, legends, finishes, direction text (pure data, no component refs) |
+| `src/f1-livery-designs.jsx` | Main component — swatch renderers, card layout, renderer lookup maps |
 | `src/App.jsx` | Root component, renders `<F1LiveryDesigns />` |
 | `index.html` | Entry point |
 
 ## Architecture
 
-Single-component design. Everything lives in `f1-livery-designs.jsx`:
+Team data lives in `teams.json`; components and renderer logic in `f1-livery-designs.jsx`:
 
-- **Team data array** — 11 team objects with colors, legend, finish, direction text, country
+- **Team data** (`teams.json`) — 11 team objects with colors, legend, finish, direction text, country
+- **Renderer lookup** — `RENDERERS` and `TOP_ACCENTS` maps in the component file join data to components
 - **Flag renderers** — Inline SVG components for 6 countries (FlagItaly, FlagUK, FlagAustria, FlagGermany, FlagFrance, FlagUSA) with `FLAGS` lookup map
 - **Finish overlays** — `FINISH_OVERLAYS` config + `FinishOverlay` component rendering diagonal gradient rect overlays for gloss/high-gloss/satin/metallic finishes; matte and anodized have no overlay
 - **Swatch renderers** — SVG components per team (SwatchDefault, SwatchFerrari, SwatchRedBull, SwatchRacingBulls, SwatchDuracell, SwatchHaas, SwatchMercedes, SwatchAudi, SwatchAlpine, SwatchAstonMartin, SwatchCadillac)
