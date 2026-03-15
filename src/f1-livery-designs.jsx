@@ -199,7 +199,7 @@ function SwatchDuracell() {
 }
 
 function SwatchHaas({ colors }) {
-  // White primary, red secondary diagonal, blue bar at bottom (no black)
+  // White primary, red secondary diagonal, blue bar at bottom
   return (
     <g>
       <rect x="0" y="0" width={S} height={S} fill={colors.primary.hex} />

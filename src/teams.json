@@ -136,31 +136,31 @@
     ],
     "finish": "Metallic",
     "removed": "Williams blue, all heritage elements",
-    "special": "Stacked flat segments — it's a battery"
+    "special": "Stacked flat segments - it's a battery"
   },
   {
     "name": "Haas",
     "subtitle": "Stars and Stripes",
     "country": "United States",
-    "direction": "Red, white, and blue — finally leaning into being the American team. Toyota red does double duty.",
+    "direction": "Red, white, and blue - finally leaning into being the American team. Cherry Red and Union Blue.",
     "colors": {
       "primary": { "name": "White", "hex": "#FFFFFF" },
-      "secondary": { "name": "Toyota Red", "hex": "#CE0E2D" },
+      "secondary": { "name": "Cherry Red", "hex": "#CE0E2D" },
       "accent": { "name": "Union Blue", "hex": "#002868" }
     },
     "legend": [
+      { "shape": "◣", "name": "Cherry Red", "hex": "#CE0E2D" },
       { "shape": "■", "name": "White", "hex": "#FFFFFF" },
-      { "shape": "◣", "name": "Toyota Red", "hex": "#CE0E2D" },
       { "shape": "▬", "name": "Union Blue", "hex": "#002868" }
     ],
     "finish": "Gloss",
-    "removed": "Nothing major — blue fills the identity gap"
+    "removed": "Nothing major - blue fills the identity gap"
   },
   {
     "name": "Audi",
     "subtitle": "Landscape Livery",
     "country": "Germany",
-    "direction": "Sunset gradient nose to tail — amber horizon through peach and coral into dusky lilac. Matte. Inspired by Audi's landscape advertising.",
+    "direction": "Sunset gradient nose to tail - amber horizon through peach and coral into dusky lilac. Matte. Inspired by Audi's landscape advertising.",
     "colors": {
       "primary": { "name": "Dusky Lilac", "hex": "#9882AC" },
       "secondary": { "name": "Amber Glow", "hex": "#E8961F" },
@@ -172,7 +172,7 @@
     ],
     "finish": "Matte",
     "removed": "Titanium, silver, carbon black",
-    "special": "Gradient justified — represents actual sky"
+    "special": "Gradient justified - represents actual sky"
   },
   {
     "name": "Cadillac",
