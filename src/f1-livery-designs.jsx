@@ -322,80 +322,15 @@ function CadillacAccents({ colors }) {
   );
 }
 
-// ─── FLAG RENDERERS ─────────────────────────────────────────────────
-
-function FlagItaly() {
-  return (
-    <svg width="20" height="14" viewBox="0 0 3 2" aria-hidden="true">
-      <rect width="1" height="2" fill="#009246" />
-      <rect x="1" width="1" height="2" fill="#fff" />
-      <rect x="2" width="1" height="2" fill="#CE2B37" />
-    </svg>
-  );
-}
-
-function FlagUK() {
-  return (
-    <svg width="20" height="14" viewBox="0 0 60 30" aria-hidden="true">
-      <rect width="60" height="30" fill="#012169" />
-      <path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" strokeWidth="6" />
-      <path d="M0,0 L60,30 M60,0 L0,30" stroke="#C8102E" strokeWidth="2" />
-      <path d="M30,0 V30 M0,15 H60" stroke="#fff" strokeWidth="10" />
-      <path d="M30,0 V30 M0,15 H60" stroke="#C8102E" strokeWidth="6" />
-    </svg>
-  );
-}
-
-function FlagAustria() {
-  return (
-    <svg width="20" height="14" viewBox="0 0 3 2" aria-hidden="true">
-      <rect width="3" height="2" fill="#ED2939" />
-      <rect y="0.667" width="3" height="0.667" fill="#fff" />
-    </svg>
-  );
-}
-
-function FlagGermany() {
-  return (
-    <svg width="20" height="14" viewBox="0 0 5 3" aria-hidden="true">
-      <rect width="5" height="1" fill="#000" />
-      <rect y="1" width="5" height="1" fill="#DD0000" />
-      <rect y="2" width="5" height="1" fill="#FFCC00" />
-    </svg>
-  );
-}
-
-function FlagFrance() {
-  return (
-    <svg width="20" height="14" viewBox="0 0 3 2" aria-hidden="true">
-      <rect width="1" height="2" fill="#002395" />
-      <rect x="1" width="1" height="2" fill="#fff" />
-      <rect x="2" width="1" height="2" fill="#ED2939" />
-    </svg>
-  );
-}
-
-function FlagUSA() {
-  return (
-    <svg width="20" height="14" viewBox="0 0 190 100" aria-hidden="true">
-      {[0, 2, 4, 6, 8, 10, 12].map((i) => (
-        <rect key={i} y={i * 7.69} width="190" height="7.69" fill="#B22234" />
-      ))}
-      {[1, 3, 5, 7, 9, 11].map((i) => (
-        <rect key={i} y={i * 7.69} width="190" height="7.69" fill="#fff" />
-      ))}
-      <rect width="76" height="53.85" fill="#3C3B6E" />
-    </svg>
-  );
-}
+// ─── FLAGS ──────────────────────────────────────────────────────────
 
 const FLAGS = {
-  Italy: FlagItaly,
-  "United Kingdom": FlagUK,
-  Austria: FlagAustria,
-  Germany: FlagGermany,
-  France: FlagFrance,
-  "United States": FlagUSA,
+  Italy: "/Flag_of_Italy.svg",
+  "United Kingdom": "/Flag_of_the_United_Kingdom.svg",
+  Austria: "/Flag_of_Austria.svg",
+  Germany: "/Flag_of_Germany.svg",
+  France: "/Flag_of_France.svg",
+  "United States": "/Flag_of_the_United_States.svg",
 };
 
 // ─── TEAM DATA ───────────────────────────────────────────────────────
@@ -564,13 +499,12 @@ function TeamCard({ team }) {
           </div>
         )}
         {team.country && FLAGS[team.country] && (
-          <div
-            role="img"
-            aria-label={team.country}
-            style={{ lineHeight: 0, flexShrink: 0, marginLeft: "auto" }}
-          >
-            {(() => { const Flag = FLAGS[team.country]; return <Flag />; })()}
-          </div>
+          <img
+            src={FLAGS[team.country]}
+            alt={team.country}
+            width="20"
+            style={{ flexShrink: 0, marginLeft: "auto", display: "block" }}
+          />
         )}
       </div>
 
