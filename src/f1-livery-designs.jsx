@@ -431,7 +431,7 @@ function TeamCard({ team }) {
         </div>
       )}
 
-      <div>
+      <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", paddingRight: isPending ? 70 : 0 }}>
         <h2
           style={{
             fontFamily: "'Epilogue', sans-serif",
@@ -441,13 +441,12 @@ function TeamCard({ team }) {
             margin: 0,
             lineHeight: 1.2,
             letterSpacing: "-0.02em",
-            paddingRight: isPending ? 70 : 0,
           }}
         >
           {team.name}
         </h2>
         {team.subtitle && (
-          <div style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.625rem", color: "#8a8a8a", textTransform: "uppercase", letterSpacing: "0.08em", marginTop: 2 }}>
+          <div style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.625rem", color: "#8a8a8a", textTransform: "uppercase", letterSpacing: "0.08em" }}>
             {team.subtitle}
           </div>
         )}
@@ -472,6 +471,12 @@ function TeamCard({ team }) {
         {team.direction}
       </p>
 
+      {team.special && (
+        <div style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.625rem", color: "#aaa", backgroundColor: "#252528", padding: "7px 10px", borderRadius: 3, lineHeight: 1.4 }}>
+          ✦ {team.special}
+        </div>
+      )}
+
       <div style={{ display: "flex", gap: 20, borderTop: "1px solid #2a2a2e", paddingTop: 8, flexWrap: "wrap" }}>
         <div style={{ flex: 1 }}>
           <div style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.5rem", textTransform: "uppercase", letterSpacing: "0.12em", color: "#8a8a8a", marginBottom: 1 }}>
@@ -482,12 +487,6 @@ function TeamCard({ team }) {
           </div>
         </div>
       </div>
-
-      {team.special && (
-        <div style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.625rem", color: "#aaa", backgroundColor: "#252528", padding: "7px 10px", borderRadius: 3, lineHeight: 1.4 }}>
-          ✦ {team.special}
-        </div>
-      )}
     </div>
   );
 }
