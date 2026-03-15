@@ -400,235 +400,33 @@ const FLAGS = {
 
 // ─── TEAM DATA ───────────────────────────────────────────────────────
 
-const teams = [
-  {
-    name: "Ferrari",
-      subtitle: "Scuderia",
-    country: "Italy",
-    direction: "Classic Rosso Scuderia, gloss finish. White accents. Giallo Modena yellow highlights. No HP.",
-    colors: {
-      primary: { name: "Rosso Scuderia", hex: "#DC0000" },
-      accent: { name: "White", hex: "#FFFFFF" },
-      highlight: { name: "Giallo Modena", hex: "#FFD700" },
-    },
-    legend: [
-      { shape: "■", name: "Rosso Scuderia", hex: "#DC0000" },
-      { shape: "▬", name: "White", hex: "#FFFFFF" },
-      { shape: "▬", name: "Giallo Modena", hex: "#FFD700" },
-    ],
-    finish: "Gloss",
-    removed: "Blue HP branding",
-    renderer: SwatchFerrari,
-  },
-  {
-    name: "McLaren",
-    subtitle: "Papaya Rules",
-    country: "United Kingdom",
-    direction: "100% papaya orange. No secondary color blocks. Black only where structurally unavoidable.",
-    colors: {
-      primary: { name: "Papaya Orange", hex: "#FF8000" },
-      highlight: { name: "Black (structural)", hex: "#1A1A1A" },
-    },
-    legend: [
-      { shape: "■", name: "Papaya Orange", hex: "#FF8000" },
-      { shape: "▬", name: "Black (structural)", hex: "#1A1A1A" },
-    ],
-    finish: "Matte",
-    removed: "Teal, anthracite, any decorative black",
-    renderer: SwatchDefault,
-  },
-  /* ── Red Bull Option A (Classic Identity) ── kept for reference ──
-  {
-    name: "Red Bull",
-    subtitle: "Classic Identity",
-    direction: "Matte navy with red and yellow accents. The pre-2026 identity that defined the four-title era.",
-    colors: {
-      primary: { name: "Matte Navy", hex: "#1B2A4A" },
-      accent: { name: "Red Bull Red", hex: "#CC1E4A" },
-      highlight: { name: "Red Bull Yellow", hex: "#FFC906" },
-    },
-    legend: [
-      { shape: "■", name: "Matte Navy", hex: "#1B2A4A" },
-      { shape: "▬", name: "Red Bull Red", hex: "#CC1E4A" },
-      { shape: "▬", name: "Red Bull Yellow", hex: "#FFC906" },
-    ],
-    finish: "Matte",
-    removed: "Gloss blue, jacquard pattern",
-    renderer: SwatchRedBull,
-  },
-  ── end Option A ── */
-  {
-    name: "Red Bull",
-    country: "Austria",
-    subtitle: "2005 Throwback",
-    direction: "Gloss racing blue with red and yellow logos, highlights. A throwback to RB's 2005 debut.",
-    colors: {
-      primary: { name: "Racing Blue", hex: "#2245A8" },
-      accent: { name: "Red Bull Red", hex: "#CC1E4A" },
-      highlight: { name: "Red Bull Yellow", hex: "#FFC906" },
-    },
-    legend: [
-      { shape: "■", name: "Racing Blue", hex: "#2245A8" },
-      { shape: "▬", name: "Red Bull Red", hex: "#CC1E4A" },
-      { shape: "▬", name: "Red Bull Yellow", hex: "#FFC906" },
-    ],
-    finish: "Gloss",
-    removed: "Matte finish, dark navy",
-    renderer: SwatchRedBull,
-    topAccents: RedBullAccents,
-  },
-  {
-    name: "Mercedes",
-    subtitle: "Silver Arrows",
-    country: "Germany",
-    direction: "Reclaiming 'Silver Arrows' with a full anodized aluminum finish. Teal for numbers and highlights.",
-    colors: {
-      primary: { name: "Anodized Aluminum", hex: "#C0C0C0" },
-      highlight: { name: "Petronas Teal", hex: "#00D2BE" },
-    },
-    legend: [
-      { shape: "■", name: "Anodized Aluminum", hex: "#C0C0C0" },
-      { shape: "▬", name: "Petronas Teal", hex: "#00D2BE" },
-    ],
-    finish: "Anodized",
-    removed: "Black bodywork, zebra stripe, gradient transitions",
-    renderer: SwatchMercedes,
-  },
-  {
-    name: "Racing Bulls",
-    subtitle: "Toro Rosso",
-    country: "Italy",
-    direction: "White dominant with elevated Ford blue. Red Bull logo colors on the nose cone and airbox only.",
-    colors: {
-      primary: { name: "White", hex: "#FFFFFF" },
-      secondary: { name: "Ford Blue", hex: "#003DA5" },
-      highlight: { name: "RB Red", hex: "#CC1E4A" },
-      highlight2: { name: "RB Yellow", hex: "#FFC906" },
-    },
-    legend: [
-      { shape: "■", name: "White", hex: "#FFFFFF" },
-      { shape: "▬", name: "RB Red", hex: "#CC1E4A" },
-      { shape: "◣", name: "Ford Blue", hex: "#003DA5" },
-      { shape: "▬", name: "RB Yellow", hex: "#FFC906" },
-    ],
-    finish: "Gloss",
-    removed: "Decorative red/yellow, carbon fiber aesthetic",
-    renderer: SwatchRacingBulls,
-    topAccents: RacingBullsAccents,
-  },
-  {
-    name: "Aston Martin",
-    subtitle: "Britmaxxing",
-    country: "United Kingdom",
-    direction: "Satin British Racing Green wall-to-wall. Chrome accents matching the AM Wings Badge.",
-    colors: {
-      primary: { name: "British Racing Green", hex: "#005C2D" },
-      highlight: { name: "Chrome", hex: "#C8C8C8" },
-    },
-    legend: [
-      { shape: "■", name: "British Racing Green", hex: "#005C2D" },
-      { shape: "▬", name: "Chrome", hex: "#C8C8C8" },
-    ],
-    finish: "Satin",
-    removed: "Lime green, light blue",
-    renderer: SwatchAstonMartin,
-  },
-  {
-    name: "Alpine",
-    subtitle: "Bubblegum Pop",
-    country: "France",
-    direction: "Glossy bubblegum pink dominant (~70%). Alpine blue as secondary (~30%). White sponsorships.",
-    colors: {
-      primary: { name: "BWT Pink", hex: "#F596C8" },
-      secondary: { name: "Alpine Blue", hex: "#0078C1" },
-      highlight: { name: "White", hex: "#FFFFFF" },
-    },
-    legend: [
-      { shape: "■", name: "BWT Pink", hex: "#F596C8" },
-      { shape: "◣", name: "Alpine Blue", hex: "#0078C1" },
-      { shape: "▬", name: "White", hex: "#FFFFFF" },
-    ],
-    finish: "Gloss",
-    removed: "Blue-dominant hierarchy",
-    renderer: SwatchAlpine,
-  },
-  {
-    name: "Duracell Racing",
-        subtitle: "fka Williams",
-    country: "United Kingdom",
-    direction: "The entire car is a Duracell battery. Copper front third, black rear two-thirds. Hard cut, no gradient.",
-    colors: {
-      primary: { name: "Anthracite Anode", hex: "#1A1A1A" },
-      secondary: { name: "Copper Cathode", hex: "#CD7F32" },
-    },
-    legend: [
-      { shape: "▬", name: "Copper Cathode", hex: "#CD7F32" },
-      { shape: "■", name: "Anthracite Anode", hex: "#1A1A1A" },
-    ],
-    finish: "Metallic",
-    removed: "Williams blue, all heritage elements",
-    special: "Stacked flat segments — it's a battery",
-    renderer: SwatchDuracell,
-  },
-  {
-    name: "Haas",
-    subtitle: "Stars and Stripes",
-    country: "United States",
-    direction: "Red, white, and blue — finally leaning into being the American team. Toyota red does double duty.",
-    colors: {
-      primary: { name: "White", hex: "#FFFFFF" },
-      secondary: { name: "Toyota Red", hex: "#CE0E2D" },
-      accent: { name: "Union Blue", hex: "#002868" },
-    },
-    legend: [
-      { shape: "■", name: "White", hex: "#FFFFFF" },
-      { shape: "◣", name: "Toyota Red", hex: "#CE0E2D" },
-      { shape: "▬", name: "Union Blue", hex: "#002868" },
-    ],
-    finish: "Gloss",
-    removed: "Nothing major — blue fills the identity gap",
-    renderer: SwatchHaas,
-  },
-  {
-    name: "Audi",
-    country: "Germany",
-    subtitle: "Landscape Livery",
-    direction: "Sunset gradient nose to tail — amber horizon through peach and coral into dusky lilac. Matte. Inspired by Audi's landscape advertising.",
-    colors: {
-      primary: { name: "Dusky Lilac", hex: "#9882AC" },
-      secondary: { name: "Amber Glow", hex: "#E8961F" },
-      highlight: { name: "Audi Red", hex: "#BB0A30" },
-    },
-    legend: [
-      { shape: "▬", name: "Sunset Gradient", hex: "#D4727A" },
-      { shape: "▬", name: "Audi Red", hex: "#BB0A30" },
-    ],
-    finish: "Matte",
-    removed: "Titanium, silver, carbon black",
-    special: "Gradient justified — represents actual sky",
-    renderer: SwatchAudi,
-  },
-  {
-    name: "Cadillac",
-    subtitle: "Gold Standard",
-    country: "United States",
-    direction: "Full glossy yellow. Classic Cadillac crest on rear body/fin. Red and blue from the crest as accents.",
-    colors: {
-      primary: { name: "Cadillac Gold", hex: "#F5C518" },
-      highlight: { name: "Cadillac Red", hex: "#C41E3A" },
-      highlight2: { name: "Cadillac Blue", hex: "#002868" },
-    },
-    legend: [
-      { shape: "■", name: "Cadillac Gold", hex: "#F5C518" },
-      { shape: "▬", name: "Cadillac Red", hex: "#C41E3A" },
-      { shape: "▬", name: "Cadillac Blue", hex: "#002868" },
-    ],
-    finish: "High Gloss",
-    removed: "Asymmetric split, black/white scheme",
-    renderer: SwatchCadillac,
-    topAccents: CadillacAccents,
-  },
-];
+import teamsData from "./teams.json";
+
+const RENDERERS = {
+  Ferrari: SwatchFerrari,
+  McLaren: SwatchDefault,
+  "Red Bull": SwatchRedBull,
+  Mercedes: SwatchMercedes,
+  "Racing Bulls": SwatchRacingBulls,
+  "Aston Martin": SwatchAstonMartin,
+  Alpine: SwatchAlpine,
+  "Duracell Racing": SwatchDuracell,
+  Haas: SwatchHaas,
+  Audi: SwatchAudi,
+  Cadillac: SwatchCadillac,
+};
+
+const TOP_ACCENTS = {
+  "Red Bull": RedBullAccents,
+  "Racing Bulls": RacingBullsAccents,
+  Cadillac: CadillacAccents,
+};
+
+const teams = teamsData.map((team) => ({
+  ...team,
+  renderer: RENDERERS[team.name] ?? SwatchDefault,
+  topAccents: TOP_ACCENTS[team.name],
+}));
 
 // ─── COMPONENTS ──────────────────────────────────────────────────────
 
