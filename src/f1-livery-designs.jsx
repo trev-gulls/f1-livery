@@ -431,7 +431,7 @@ function TeamCard({ team }) {
       )}
 
       <div>
-        <h3
+        <h2
           style={{
             fontFamily: "'Epilogue', sans-serif",
             fontSize: "1.0625rem",
@@ -444,7 +444,7 @@ function TeamCard({ team }) {
           }}
         >
           {team.name}
-        </h3>
+        </h2>
         {team.subtitle && (
           <div style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.625rem", color: "#8a8a8a", textTransform: "uppercase", letterSpacing: "0.08em", marginTop: 2 }}>
             {team.subtitle}
@@ -498,13 +498,8 @@ export default function F1LiveryDesigns() {
 
   return (
     <div style={{ minHeight: "100vh", backgroundColor: "#111113", fontFamily: "'Epilogue', sans-serif" }}>
-      <link
-        href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;600;800;900&family=DM+Mono:wght@400;500&display=swap"
-        rel="stylesheet"
-      />
-
       {/* Header */}
-      <div style={{ backgroundColor: "#0a0a0a", padding: "48px 40px 44px", position: "relative", overflow: "hidden" }}>
+      <header style={{ backgroundColor: "#0a0a0a", padding: "48px 40px 44px", position: "relative", overflow: "hidden" }}>
         <div style={{ position: "absolute", top: -40, right: -40, width: 420, height: 300, background: "linear-gradient(135deg, rgba(220,0,0,0.12), rgba(255,128,0,0.08), rgba(0,92,45,0.08), rgba(180,151,189,0.12), rgba(218,165,32,0.1))", filter: "blur(70px)", borderRadius: "50%" }} />
         <div style={{ position: "relative", maxWidth: 1200, margin: "0 auto" }}>
           <div style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.6875rem", textTransform: "uppercase", letterSpacing: "0.2em", color: "#8a8a8a", marginBottom: 12 }}>
@@ -528,19 +523,19 @@ export default function F1LiveryDesigns() {
             </div>
           </div>
         </div>
-      </div>
+      </header>
 
       {/* Grid */}
-      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "28px 24px 48px" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(340px, 1fr))", gap: 16 }}>
+      <main style={{ maxWidth: 1200, margin: "0 auto", padding: "28px 24px 48px" }}>
+        <ul style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(340px, 1fr))", gap: 16, listStyle: "none", padding: 0, margin: 0 }}>
           {allTeams.map((team, i) => (
-            <TeamCard key={i} team={team} />
+            <li key={i}><TeamCard team={team} /></li>
           ))}
-        </div>
-      </div>
+        </ul>
+      </main>
 
       {/* Footer */}
-      <div style={{ borderTop: "1px solid #2a2a2e", padding: "24px 40px", maxWidth: 1200, margin: "0 auto" }}>
+      <footer style={{ borderTop: "1px solid #2a2a2e", padding: "24px 40px", maxWidth: 1200, margin: "0 auto" }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 12 }}>
           <div style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.625rem", color: "#8a8a8a", textTransform: "uppercase", letterSpacing: "0.1em" }}>
             @tgulls · F1 2026 Livery Design System
@@ -549,7 +544,7 @@ export default function F1LiveryDesigns() {
             March 2026
           </div>
         </div>
-      </div>
+      </footer>
     </div>
   );
 }
