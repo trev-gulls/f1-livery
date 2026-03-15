@@ -102,6 +102,40 @@ function SwatchAudi({ colors }) {
   );
 }
 
+function SwatchAlpine({ colors }) {
+  // ~70% pink, ~30% blue — diagonal pushed lower than SwatchDefault
+  const { primary, secondary, highlight } = colors;
+  return (
+    <g>
+      <rect x="0" y="0" width={S} height={S} fill={primary.hex} />
+      <polygon
+        points={`0,${S * 0.56} ${S},${S * 0.84} ${S},${S} 0,${S}`}
+        fill={secondary.hex}
+      />
+      {highlight && <rect x={0} y={S - 4} width={S} height={4} fill={highlight.hex} />}
+    </g>
+  );
+}
+
+function SwatchAstonMartin({ colors }) {
+  // British Racing Green with chrome gradient highlight bar
+  return (
+    <g>
+      <defs>
+        <linearGradient id="am-chrome" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stopColor="#888" />
+          <stop offset="30%" stopColor="#F0F0F0" />
+          <stop offset="50%" stopColor="#999" />
+          <stop offset="75%" stopColor="#FAFAFA" />
+          <stop offset="100%" stopColor="#AAA" />
+        </linearGradient>
+      </defs>
+      <rect x="0" y="0" width={S} height={S} fill={colors.primary.hex} />
+      <rect x={0} y={S - 4} width={S} height={4} fill="url(#am-chrome)" />
+    </g>
+  );
+}
+
 function SwatchCadillac({ colors }) {
   // Goldenrod gold field, bottom bar split red and blue
   return (
@@ -118,6 +152,7 @@ function SwatchCadillac({ colors }) {
 const teams = [
   {
     name: "Ferrari",
+    flag: "\u{1F1EE}\u{1F1F9}",
     direction: "Classic Rosso Scuderia, gloss finish. White accents. Giallo Modena yellow highlights. No blue HP logo.",
     colors: {
       primary: { name: "Rosso Scuderia", hex: "#DC0000" },
@@ -135,6 +170,7 @@ const teams = [
   },
   {
     name: "McLaren",
+    flag: "\u{1F1EC}\u{1F1E7}",
     direction: "100% papaya orange. No secondary color blocks. Black only where structurally unavoidable.",
     colors: {
       primary: { name: "Papaya Orange", hex: "#FF8000" },
@@ -170,6 +206,7 @@ const teams = [
   ── end Option A ── */
   {
     name: "Red Bull",
+    flag: "\u{1F1E6}\u{1F1F9}",
     subtitle: "2026 Throwback",
     direction: "Gloss racing blue with red and yellow logos/highlights. The 2026 actual — a throwback to 2005 debut.",
     colors: {
@@ -188,6 +225,7 @@ const teams = [
   },
   {
     name: "Mercedes",
+    flag: "\u{1F1E9}\u{1F1EA}",
     direction: "Full silver anodized aluminum finish. Reclaiming 'Silver Arrows' literally. Teal for numbers and small highlights only.",
     colors: {
       primary: { name: "Anodized Aluminum", hex: "#C0C0C0" },
@@ -203,6 +241,7 @@ const teams = [
   },
   {
     name: "Racing Bulls",
+    flag: "\u{1F1EE}\u{1F1F9}",
     direction: "White dominant with elevated Ford blue. Red Bull logo colors restricted to nose cone and airbox only.",
     colors: {
       primary: { name: "White", hex: "#FFFFFF" },
@@ -213,8 +252,7 @@ const teams = [
     legend: [
       { shape: "■", name: "White", hex: "#FFFFFF" },
       { shape: "◣", name: "Ford Blue", hex: "#003DA5" },
-      { shape: "▬", name: "RB Red", hex: "#CC1E4A" },
-      { shape: "▬", name: "RB Yellow", hex: "#FFC906" },
+      { shape: "▬", name: "RB Accent", hex: "split" },
     ],
     finish: "Gloss",
     removed: "Decorative red/yellow, carbon fiber aesthetic",
@@ -222,21 +260,23 @@ const teams = [
   },
   {
     name: "Aston Martin",
+    flag: "\u{1F1EC}\u{1F1E7}",
     direction: "Satin British Racing Green wall-to-wall. Silver accents only. No lime green.",
     colors: {
       primary: { name: "British Racing Green", hex: "#005C2D" },
-      highlight: { name: "Silver", hex: "#C8C8C8" },
+      highlight: { name: "Chrome", hex: "#C8C8C8" },
     },
     legend: [
       { shape: "■", name: "British Racing Green", hex: "#005C2D" },
-      { shape: "▬", name: "Silver", hex: "#C8C8C8" },
+      { shape: "▬", name: "Chrome", hex: "chrome" },
     ],
     finish: "Satin",
     removed: "Lime green, light blue rear wing",
-    renderer: SwatchDefault,
+    renderer: SwatchAstonMartin,
   },
   {
     name: "Alpine",
+    flag: "\u{1F1EB}\u{1F1F7}",
     direction: "Glossy bubblegum pink dominant (~70%). Alpine blue as secondary (~30%). White logos and numbers.",
     colors: {
       primary: { name: "BWT Pink", hex: "#F596C8" },
@@ -250,10 +290,11 @@ const teams = [
     ],
     finish: "Gloss",
     removed: "Blue-dominant hierarchy",
-    renderer: SwatchDefault,
+    renderer: SwatchAlpine,
   },
   {
     name: "Duracell Racing",
+    flag: "\u{1F1EC}\u{1F1E7}",
     subtitle: "fka Williams",
     direction: "The entire car is a Duracell battery. Copper front third, black rear two-thirds. Hard cut, no gradient.",
     colors: {
@@ -271,6 +312,7 @@ const teams = [
   },
   {
     name: "Haas",
+    flag: "\u{1F1FA}\u{1F1F8}",
     direction: "Red, white, and blue — finally leaning into being the American team. Toyota red does double duty.",
     colors: {
       primary: { name: "White", hex: "#FFFFFF" },
@@ -288,6 +330,7 @@ const teams = [
   },
   {
     name: "Audi",
+    flag: "\u{1F1E9}\u{1F1EA}",
     subtitle: "Landscape Livery",
     direction: "Sunset gradient nose to tail — amber horizon through peach and coral into dusky lilac. Matte. Inspired by Audi's landscape advertising.",
     colors: {
@@ -306,6 +349,7 @@ const teams = [
   },
   {
     name: "Cadillac",
+    flag: "\u{1F1FA}\u{1F1F8}",
     direction: "Full glossy yellow. Classic Cadillac crest on rear body/fin. Red and blue from the crest as accents.",
     colors: {
       primary: { name: "Cadillac Gold", hex: "#F5C518" },
@@ -359,14 +403,37 @@ function SwatchLegend({ legend }) {
     <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
       {legend.map((c, i) => (
         <div key={i} style={{ display: "flex", alignItems: "center", gap: 6 }}>
-          {c.hex !== "gradient" ? (
+          {c.hex === "gradient" ? (
             <div
               aria-hidden="true"
               style={{
                 width: 10,
                 height: 10,
                 borderRadius: 2,
-                backgroundColor: c.hex,
+                background: "linear-gradient(0deg, #E8961F, #D4727A, #9882AC)",
+                flexShrink: 0,
+              }}
+            />
+          ) : c.hex === "split" ? (
+            <div
+              aria-hidden="true"
+              style={{
+                width: 10,
+                height: 10,
+                borderRadius: 2,
+                background: "linear-gradient(90deg, #CC1E4A 50%, #FFC906 50%)",
+                border: "1px solid rgba(255,255,255,0.1)",
+                flexShrink: 0,
+              }}
+            />
+          ) : c.hex === "chrome" ? (
+            <div
+              aria-hidden="true"
+              style={{
+                width: 10,
+                height: 10,
+                borderRadius: 2,
+                background: "linear-gradient(90deg, #888 0%, #F0F0F0 30%, #999 50%, #FAFAFA 75%, #AAA 100%)",
                 border: "1px solid rgba(255,255,255,0.1)",
                 flexShrink: 0,
               }}
@@ -378,14 +445,15 @@ function SwatchLegend({ legend }) {
                 width: 10,
                 height: 10,
                 borderRadius: 2,
-                background: "linear-gradient(0deg, #E8961F, #D4727A, #9882AC)",
+                backgroundColor: c.hex,
+                border: "1px solid rgba(255,255,255,0.1)",
                 flexShrink: 0,
               }}
             />
           )}
           <span style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.625rem", color: "#888", lineHeight: 1.3 }}>
             <span style={{ color: "#ccc", fontWeight: 500 }}>{c.name}</span>{" "}
-            {c.hex !== "gradient" && <span style={{ color: "#8a8a8a" }}>{c.hex}</span>}
+            {!["gradient", "split", "chrome"].includes(c.hex) && <span style={{ color: "#8a8a8a" }}>{c.hex}</span>}
           </span>
         </div>
       ))}
@@ -431,7 +499,7 @@ function TeamCard({ team }) {
         </div>
       )}
 
-      <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", paddingRight: isPending ? 70 : 0 }}>
+      <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: 8, paddingRight: isPending ? 70 : 0 }}>
         <h2
           style={{
             fontFamily: "'Epilogue', sans-serif",
@@ -441,6 +509,7 @@ function TeamCard({ team }) {
             margin: 0,
             lineHeight: 1.2,
             letterSpacing: "-0.02em",
+            flexShrink: 0,
           }}
         >
           {team.name}
@@ -448,6 +517,11 @@ function TeamCard({ team }) {
         {team.subtitle && (
           <div style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.625rem", color: "#8a8a8a", textTransform: "uppercase", letterSpacing: "0.08em" }}>
             {team.subtitle}
+          </div>
+        )}
+        {team.flag && (
+          <div style={{ fontSize: "1rem", lineHeight: 1, flexShrink: 0, marginLeft: "auto" }}>
+            {team.flag}
           </div>
         )}
       </div>
