@@ -1,6 +1,105 @@
 
 const S = 88;
 
+// ─── FINISH OVERLAYS ────────────────────────────────────────────────
+//
+// Simple gradient rect overlays instead of SVG filters.
+// Matte = no overlay (flat fill IS matte). Highlights are additive.
+
+const FINISH_OVERLAYS = {
+  Gloss: { id: "finish-gloss", opacity: 0.13 },
+  "High Gloss": { id: "finish-high-gloss", opacity: 0.55 },
+  Satin: { id: "finish-satin", opacity: 0.15 },
+};
+
+function hexLightness(hex) {
+  const r = parseInt(hex.slice(1, 3), 16) / 255;
+  const g = parseInt(hex.slice(3, 5), 16) / 255;
+  const b = parseInt(hex.slice(5, 7), 16) / 255;
+  return 0.299 * r + 0.587 * g + 0.114 * b;
+}
+
+function FinishOverlay({ finish, primaryHex }) {
+  const cfg = FINISH_OVERLAYS[finish];
+  if (!cfg) return null;
+  const isGloss = finish === "Gloss";
+  const isHighGloss = finish === "High Gloss";
+  const isLight = primaryHex && hexLightness(primaryHex) > 0.6;
+  const useGlossDual = isGloss && isLight;
+  const useHighGlossShadow = isHighGloss && isLight;
+  const gradId = (useGlossDual || useHighGlossShadow) ? `${cfg.id}-light` : cfg.id;
+  return (
+    <>
+      <defs>
+        {useGlossDual ? (
+          <linearGradient id={gradId} x1="0" y1="0" x2="1" y2="1">
+            <stop offset="20%" stopColor="black" stopOpacity="0" />
+            <stop offset="32%" stopColor="black" stopOpacity="0.4" />
+            <stop offset="42%" stopColor="white" stopOpacity="0.9" />
+            <stop offset="50%" stopColor="white" stopOpacity="1" />
+            <stop offset="58%" stopColor="white" stopOpacity="0.9" />
+            <stop offset="68%" stopColor="black" stopOpacity="0.4" />
+            <stop offset="80%" stopColor="black" stopOpacity="0" />
+          </linearGradient>
+        ) : useHighGlossShadow ? (
+          <>
+            <radialGradient id={gradId} cx="0.25" cy="0.25" r="0.7" fx="0.2" fy="0.2">
+              <stop offset="0%" stopColor="white" stopOpacity="1" />
+              <stop offset="8%" stopColor="white" stopOpacity="1" />
+              <stop offset="20%" stopColor="white" stopOpacity="0.5" />
+              <stop offset="40%" stopColor="white" stopOpacity="0.15" />
+              <stop offset="65%" stopColor="black" stopOpacity="0" />
+              <stop offset="100%" stopColor="black" stopOpacity="0.1" />
+            </radialGradient>
+            <radialGradient id={`${gradId}-2`} cx="0.5" cy="0.5" rx="0.5" ry="0.5">
+              <stop offset="0%" stopColor="white" stopOpacity="1" />
+              <stop offset="40%" stopColor="white" stopOpacity="0.6" />
+              <stop offset="70%" stopColor="white" stopOpacity="0.1" />
+              <stop offset="100%" stopColor="white" stopOpacity="0" />
+            </radialGradient>
+          </>
+
+        ) : finish === "Satin" ? (
+          <linearGradient id={gradId} x1="0" y1="0" x2="1" y2="1">
+            <stop offset="15%" stopColor="black" stopOpacity="0" />
+            <stop offset="30%" stopColor="black" stopOpacity="0.7" />
+            <stop offset="40%" stopColor="black" stopOpacity="0.3" />
+            <stop offset="47%" stopColor="white" stopOpacity="0.3" />
+            <stop offset="50%" stopColor="white" stopOpacity="0.5" />
+            <stop offset="53%" stopColor="white" stopOpacity="0.3" />
+            <stop offset="60%" stopColor="black" stopOpacity="0.3" />
+            <stop offset="70%" stopColor="black" stopOpacity="0.7" />
+            <stop offset="85%" stopColor="black" stopOpacity="0" />
+          </linearGradient>
+        ) : (
+          <linearGradient id={gradId} x1="0" y1="0" x2="1" y2="1">
+            <stop offset="25%" stopColor="white" stopOpacity="0" />
+            <stop offset="42%" stopColor="white" stopOpacity="1" />
+            <stop offset="58%" stopColor="white" stopOpacity="1" />
+            <stop offset="75%" stopColor="white" stopOpacity="0" />
+          </linearGradient>
+        )}
+      </defs>
+      <rect
+        x="0" y="0" width={S} height={S}
+        fill={`url(#${gradId})`}
+        opacity={cfg.opacity}
+        style={{ pointerEvents: "none" }}
+      />
+      {useHighGlossShadow && (
+        <ellipse
+          cx={S * 0.52} cy={S * 0.5}
+          rx="52" ry="30"
+          fill={`url(#${gradId}-2)`}
+          opacity={0.45}
+          transform={`rotate(-35, ${S * 0.52}, ${S * 0.5})`}
+          style={{ pointerEvents: "none" }}
+        />
+      )}
+    </>
+  );
+}
+
 // ─── SWATCH RENDERERS ────────────────────────────────────────────────
 
 function SwatchDefault({ colors }) {
@@ -33,10 +132,17 @@ function SwatchFerrari({ colors }) {
 }
 
 function SwatchRedBull({ colors }) {
-  // Primary field, red+yellow side by side bars along bottom
+  // Primary field only — accent bars rendered via topAccents above gloss overlay
   return (
     <g>
       <rect x="0" y="0" width={S} height={S} fill={colors.primary.hex} />
+    </g>
+  );
+}
+
+function RedBullAccents({ colors }) {
+  return (
+    <g>
       <rect x="0" y={S - 6} width={S / 2} height={6} fill={colors.accent.hex} />
       <rect x={S / 2} y={S - 6} width={S / 2} height={6} fill={colors.highlight.hex} />
     </g>
@@ -44,7 +150,7 @@ function SwatchRedBull({ colors }) {
 }
 
 function SwatchRacingBulls({ colors }) {
-  // White primary, Ford blue secondary diagonal, red+yellow side by side bars at bottom
+  // White primary, Ford blue secondary diagonal — accent bars rendered via topAccents above gloss overlay
   return (
     <g>
       <rect x="0" y="0" width={S} height={S} fill={colors.primary.hex} />
@@ -52,19 +158,42 @@ function SwatchRacingBulls({ colors }) {
         points={`0,${S * 0.4} ${S},${S * 0.68} ${S},${S} 0,${S}`}
         fill={colors.secondary.hex}
       />
+    </g>
+  );
+}
+
+function RacingBullsAccents({ colors }) {
+  return (
+    <g>
       <rect x="0" y={S - 6} width={S / 2} height={6} fill={colors.highlight.hex} />
       <rect x={S / 2} y={S - 6} width={S / 2} height={6} fill={colors.highlight2.hex} />
     </g>
   );
 }
 
-function SwatchDuracell({ colors }) {
-  // Flat stacked horizontal segments like a battery: copper top 1/3, black bottom 2/3
+function SwatchDuracell() {
+  // Battery: metallic copper top 1/3, metallic anthracite bottom 2/3
   const copperH = Math.round(S * 0.33);
   return (
     <g>
-      <rect x="0" y="0" width={S} height={copperH} fill={colors.secondary.hex} />
-      <rect x="0" y={copperH} width={S} height={S - copperH} fill={colors.primary.hex} />
+      <defs>
+        <linearGradient id="duracell-copper" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stopColor="#A0652A" />
+          <stop offset="25%" stopColor="#E8A04A" />
+          <stop offset="50%" stopColor="#CD7F32" />
+          <stop offset="75%" stopColor="#DDA652" />
+          <stop offset="100%" stopColor="#9B5E28" />
+        </linearGradient>
+        <linearGradient id="duracell-anthracite" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stopColor="#1A1A1A" />
+          <stop offset="25%" stopColor="#2E2E2E" />
+          <stop offset="50%" stopColor="#1F1F1F" />
+          <stop offset="75%" stopColor="#2A2A2A" />
+          <stop offset="100%" stopColor="#181818" />
+        </linearGradient>
+      </defs>
+      <rect x="0" y="0" width={S} height={copperH} fill="url(#duracell-copper)" />
+      <rect x="0" y={copperH} width={S} height={S - copperH} fill="url(#duracell-anthracite)" />
     </g>
   );
 }
@@ -79,6 +208,25 @@ function SwatchHaas({ colors }) {
         fill={colors.secondary.hex}
       />
       <rect x="0" y={S - 5} width={S} height={5} fill={colors.accent.hex} />
+    </g>
+  );
+}
+
+function SwatchMercedes({ colors }) {
+  // Anodized aluminum — horizontal shimmer rotated for forward momentum (left-to-right)
+  return (
+    <g>
+      <defs>
+        <linearGradient id="merc-anodized" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#A8A8A8" />
+          <stop offset="25%" stopColor="#D0D0D0" />
+          <stop offset="50%" stopColor="#B8B8B8" />
+          <stop offset="75%" stopColor="#CFCFCF" />
+          <stop offset="100%" stopColor="#A5A5A5" />
+        </linearGradient>
+      </defs>
+      <rect x="0" y="0" width={S} height={S} fill="url(#merc-anodized)" />
+      <rect x={0} y={S - 4} width={S} height={4} fill={colors.highlight.hex} />
     </g>
   );
 }
@@ -137,12 +285,39 @@ function SwatchAstonMartin({ colors }) {
 }
 
 function SwatchCadillac({ colors }) {
-  // Goldenrod gold field, bottom bar split red and blue
+  // Goldenrod gold field only — gem bars rendered via topAccents above gloss overlay
   return (
     <g>
       <rect x="0" y="0" width={S} height={S} fill={colors.primary.hex} />
-      <rect x="0" y={S - 5} width={S / 2} height={5} fill={colors.highlight.hex} />
-      <rect x={S / 2} y={S - 5} width={S / 2} height={5} fill={colors.highlight2.hex} />
+    </g>
+  );
+}
+
+function CadillacAccents({ colors }) {
+  // Cut-gem faceted red and blue bars
+  const barY = S - 6;
+  const barH = 6;
+  const halfW = S / 2;
+  return (
+    <g>
+      <defs>
+        <linearGradient id="gem-red" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stopColor="white" stopOpacity="0.6" />
+          <stop offset="20%" stopColor="#FF4D6A" stopOpacity="0.4" />
+          <stop offset="50%" stopColor={colors.highlight.hex} stopOpacity="0" />
+          <stop offset="100%" stopColor="black" stopOpacity="0.5" />
+        </linearGradient>
+        <linearGradient id="gem-blue" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stopColor="white" stopOpacity="0.6" />
+          <stop offset="20%" stopColor="#4A7FCC" stopOpacity="0.4" />
+          <stop offset="50%" stopColor={colors.highlight2.hex} stopOpacity="0" />
+          <stop offset="100%" stopColor="black" stopOpacity="0.5" />
+        </linearGradient>
+      </defs>
+      <rect x="0" y={barY} width={halfW} height={barH} fill={colors.highlight.hex} />
+      <rect x="0" y={barY} width={halfW} height={barH} fill="url(#gem-red)" />
+      <rect x={halfW} y={barY} width={halfW} height={barH} fill={colors.highlight2.hex} />
+      <rect x={halfW} y={barY} width={halfW} height={barH} fill="url(#gem-blue)" />
     </g>
   );
 }
@@ -298,6 +473,7 @@ const teams = [
     finish: "Gloss",
     removed: "Matte finish, dark navy",
     renderer: SwatchRedBull,
+    topAccents: RedBullAccents,
   },
   {
     name: "Mercedes",
@@ -313,7 +489,7 @@ const teams = [
     ],
     finish: "Anodized",
     removed: "Black bodywork, zebra stripe, gradient transitions",
-    renderer: SwatchDefault,
+    renderer: SwatchMercedes,
   },
   {
     name: "Racing Bulls",
@@ -334,6 +510,7 @@ const teams = [
     finish: "Gloss",
     removed: "Decorative red/yellow, carbon fiber aesthetic",
     renderer: SwatchRacingBulls,
+    topAccents: RacingBullsAccents,
   },
   {
     name: "Aston Martin",
@@ -345,7 +522,7 @@ const teams = [
     },
     legend: [
       { shape: "■", name: "British Racing Green", hex: "#005C2D" },
-      { shape: "▬", name: "Chrome", hex: "chrome" },
+      { shape: "▬", name: "Chrome", hex: "#C8C8C8" },
     ],
     finish: "Satin",
     removed: "Lime green, light blue rear wing",
@@ -416,7 +593,7 @@ const teams = [
       highlight: { name: "Audi Red", hex: "#BB0A30" },
     },
     legend: [
-      { shape: "◧", name: "Sunset gradient", hex: "gradient" },
+      { shape: "▬", name: "Sunset Gradient", hex: "#D4727A" },
       { shape: "▬", name: "Audi Red", hex: "#BB0A30" },
     ],
     finish: "Matte",
@@ -441,6 +618,7 @@ const teams = [
     finish: "High Gloss",
     removed: "Asymmetric split, black/white scheme",
     renderer: SwatchCadillac,
+    topAccents: CadillacAccents,
   },
 ];
 
@@ -448,6 +626,7 @@ const teams = [
 
 function LiverySwatch({ team }) {
   const Renderer = team.renderer;
+  const TopAccents = team.topAccents;
   const isWhitePrimary = team.colors.primary.hex === "#FFFFFF";
   return (
     <svg
@@ -470,19 +649,14 @@ function LiverySwatch({ team }) {
       </defs>
       <g clipPath={`url(#clip-${team.name.replace(/\s/g, "")})`}>
         <Renderer colors={team.colors} />
+        {team.overlay !== false && <FinishOverlay finish={team.finish} primaryHex={team.colors.primary.hex} />}
+        {TopAccents && <TopAccents colors={team.colors} />}
       </g>
     </svg>
   );
 }
 
 function LegendSwatch({ hex }) {
-  const special = hex === "gradient" || hex === "chrome";
-  const bg =
-    hex === "gradient"
-      ? "linear-gradient(0deg, #E8961F, #D4727A, #9882AC)"
-      : hex === "chrome"
-        ? "linear-gradient(90deg, #888 0%, #F0F0F0 30%, #999 50%, #FAFAFA 75%, #AAA 100%)"
-        : undefined;
   return (
     <div
       aria-hidden="true"
@@ -490,8 +664,8 @@ function LegendSwatch({ hex }) {
         width: 10,
         height: 10,
         borderRadius: 2,
-        ...(special ? { background: bg } : { backgroundColor: hex }),
-        border: hex === "gradient" ? undefined : "1px solid rgba(255,255,255,0.1)",
+        backgroundColor: hex,
+        border: "1px solid rgba(255,255,255,0.1)",
         flexShrink: 0,
       }}
     />
@@ -499,12 +673,11 @@ function LegendSwatch({ hex }) {
 }
 
 function LegendItem({ c }) {
-  const isSpecial = c.hex === "gradient" || c.hex === "chrome";
   return (
     <div style={{ display: "flex", alignItems: "center", gap: 6, minWidth: 0, flexWrap: "wrap", overflow: "hidden", height: 13, fontFamily: "'DM Mono', monospace", fontSize: "0.625rem", lineHeight: 1.3 }}>
       <LegendSwatch hex={c.hex} />
       <span style={{ flexShrink: 0, whiteSpace: "nowrap", color: "#ccc", fontWeight: 500 }}>{c.name}</span>
-      {!isSpecial && <span style={{ flexShrink: 0, whiteSpace: "nowrap", color: "#8a8a8a" }}>{c.hex}</span>}
+      <span style={{ flexShrink: 0, whiteSpace: "nowrap", color: "#8a8a8a" }}>{c.hex}</span>
     </div>
   );
 }

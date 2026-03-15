@@ -25,7 +25,8 @@ Single-component design. Everything lives in `f1-livery-designs.jsx`:
 
 - **Team data array** — 11 team objects with colors, legend, finish, direction text, country
 - **Flag renderers** — Inline SVG components for 6 countries (FlagItaly, FlagUK, FlagAustria, FlagGermany, FlagFrance, FlagUSA) with `FLAGS` lookup map
-- **Swatch renderers** — SVG components per team (SwatchDefault, SwatchFerrari, SwatchRedBull, SwatchRacingBulls, SwatchDuracell, SwatchHaas, SwatchAudi, SwatchAlpine, SwatchAstonMartin, SwatchCadillac)
+- **Finish overlays** — `FINISH_OVERLAYS` config + `FinishOverlay` component rendering diagonal gradient rect overlays for gloss/high-gloss/satin/metallic finishes; matte and anodized have no overlay
+- **Swatch renderers** — SVG components per team (SwatchDefault, SwatchFerrari, SwatchRedBull, SwatchRacingBulls, SwatchDuracell, SwatchHaas, SwatchMercedes, SwatchAudi, SwatchAlpine, SwatchAstonMartin, SwatchCadillac)
 - **Card components** — LiverySwatch, LegendSwatch, LegendItem, SwatchLegend, TeamCard
 - **Root export** — `F1LiveryDesigns` renders header, grid, footer
 
@@ -33,8 +34,10 @@ Single-component design. Everything lives in `f1-livery-designs.jsx`:
 
 - All styles are inline (no CSS modules, no Tailwind)
 - Fonts loaded via Google Fonts `<link>` in component body
-- Colors defined as `{ name, hex }` objects in team data
+- Colors defined as `{ name, hex }` objects in team data — legend hex values are always flat (no `"gradient"` or `"chrome"` special values)
 - Each team can specify a custom swatch renderer or use `SwatchDefault`
+- Material gradients on swatches where color names reference non-flat materials (metallic, chrome, anodized) — legends always use flat hex chips
+- Finish overlays applied as diagonal gradient rects for gloss/high-gloss/satin/metallic — matte and anodized use no overlay (flat fill is matte; anodized relies on material gradient)
 
 ## Known Issues
 
