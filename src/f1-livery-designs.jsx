@@ -576,8 +576,10 @@ function TeamCard({ team }) {
 
       <div style={{ display: "flex", gap: 14, alignItems: "flex-start" }}>
         <LiverySwatch team={team} />
-        <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center", gap: 8, minHeight: S }}>
-          <SwatchLegend legend={team.legend} />
+        <div style={{ flex: 1, display: "flex", flexDirection: "column", minHeight: S }}>
+          <div style={{ paddingTop: 8, flex: 1 }}>
+            <SwatchLegend legend={team.legend} />
+          </div>
           <div>
             <div style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.5rem", textTransform: "uppercase", letterSpacing: "0.12em", color: "#8a8a8a", marginBottom: 1 }}>
               Finish
