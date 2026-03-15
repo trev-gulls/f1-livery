@@ -481,7 +481,7 @@ const teams = [
     name: "Mercedes",
     subtitle: "Silver Arrows",
     country: "Germany",
-    direction: "Full silver anodized aluminum finish. Reclaiming 'Silver Arrows' literally. Teal for numbers and small highlights only.",
+    direction: "Reclaiming 'Silver Arrows' with a full anodized aluminum finish. Teal for numbers and highlights.",
     colors: {
       primary: { name: "Anodized Aluminum", hex: "#C0C0C0" },
       highlight: { name: "Petronas Teal", hex: "#00D2BE" },
@@ -498,7 +498,7 @@ const teams = [
     name: "Racing Bulls",
     subtitle: "Toro Rosso",
     country: "Italy",
-    direction: "White dominant with elevated Ford blue. Red Bull logo colors restricted to nose cone and airbox only.",
+    direction: "White dominant with elevated Ford blue. Red Bull logo colors on the nose cone and airbox only.",
     colors: {
       primary: { name: "White", hex: "#FFFFFF" },
       secondary: { name: "Ford Blue", hex: "#003DA5" },
@@ -520,7 +520,7 @@ const teams = [
     name: "Aston Martin",
     subtitle: "Britmaxxing",
     country: "United Kingdom",
-    direction: "Satin British Racing Green wall-to-wall. Silver accents only. No lime green.",
+    direction: "Satin British Racing Green wall-to-wall. Chrome accents matching the AM Wings Badge.",
     colors: {
       primary: { name: "British Racing Green", hex: "#005C2D" },
       highlight: { name: "Chrome", hex: "#C8C8C8" },
@@ -530,14 +530,14 @@ const teams = [
       { shape: "▬", name: "Chrome", hex: "#C8C8C8" },
     ],
     finish: "Satin",
-    removed: "Lime green, light blue rear wing",
+    removed: "Lime green, light blue",
     renderer: SwatchAstonMartin,
   },
   {
     name: "Alpine",
     subtitle: "Bubblegum Pop",
     country: "France",
-    direction: "Glossy bubblegum pink dominant (~70%). Alpine blue as secondary (~30%). White logos and numbers.",
+    direction: "Glossy bubblegum pink dominant (~70%). Alpine blue as secondary (~30%). White sponsorships.",
     colors: {
       primary: { name: "BWT Pink", hex: "#F596C8" },
       secondary: { name: "Alpine Blue", hex: "#0078C1" },
