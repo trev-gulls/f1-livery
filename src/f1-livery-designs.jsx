@@ -333,6 +333,8 @@ function LiverySwatch({ team }) {
       width={S}
       height={S}
       viewBox={`0 0 ${S} ${S}`}
+      aria-hidden="true"
+      focusable="false"
       style={{
         borderRadius: 2,
         display: "block",
@@ -359,6 +361,7 @@ function SwatchLegend({ legend }) {
         <div key={i} style={{ display: "flex", alignItems: "center", gap: 6 }}>
           {c.hex !== "gradient" ? (
             <div
+              aria-hidden="true"
               style={{
                 width: 10,
                 height: 10,
@@ -370,6 +373,7 @@ function SwatchLegend({ legend }) {
             />
           ) : (
             <div
+              aria-hidden="true"
               style={{
                 width: 10,
                 height: 10,
@@ -379,9 +383,9 @@ function SwatchLegend({ legend }) {
               }}
             />
           )}
-          <span style={{ fontFamily: "'DM Mono', monospace", fontSize: 10, color: "#888", lineHeight: 1.3 }}>
+          <span style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.625rem", color: "#888", lineHeight: 1.3 }}>
             <span style={{ color: "#ccc", fontWeight: 500 }}>{c.name}</span>{" "}
-            {c.hex !== "gradient" && <span style={{ color: "#555" }}>{c.hex}</span>}
+            {c.hex !== "gradient" && <span style={{ color: "#8a8a8a" }}>{c.hex}</span>}
           </span>
         </div>
       ))}
@@ -412,7 +416,7 @@ function TeamCard({ team }) {
             top: 10,
             right: 12,
             fontFamily: "'DM Mono', monospace",
-            fontSize: 9,
+            fontSize: "0.5625rem",
             fontWeight: 600,
             textTransform: "uppercase",
             letterSpacing: "0.1em",
@@ -430,7 +434,7 @@ function TeamCard({ team }) {
         <h3
           style={{
             fontFamily: "'Epilogue', sans-serif",
-            fontSize: 17,
+            fontSize: "1.0625rem",
             fontWeight: 800,
             color: "#e8e8e8",
             margin: 0,
@@ -442,7 +446,7 @@ function TeamCard({ team }) {
           {team.name}
         </h3>
         {team.subtitle && (
-          <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 10, color: "#666", textTransform: "uppercase", letterSpacing: "0.08em", marginTop: 2 }}>
+          <div style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.625rem", color: "#8a8a8a", textTransform: "uppercase", letterSpacing: "0.08em", marginTop: 2 }}>
             {team.subtitle}
           </div>
         )}
@@ -453,33 +457,33 @@ function TeamCard({ team }) {
         <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center", gap: 8, minHeight: S }}>
           <SwatchLegend legend={team.legend} />
           <div>
-            <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 8, textTransform: "uppercase", letterSpacing: "0.12em", color: "#555", marginBottom: 1 }}>
+            <div style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.5rem", textTransform: "uppercase", letterSpacing: "0.12em", color: "#8a8a8a", marginBottom: 1 }}>
               Finish
             </div>
-            <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 11, fontWeight: 500, color: "#aaa" }}>
+            <div style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.6875rem", fontWeight: 500, color: "#aaa" }}>
               {team.finish}
             </div>
           </div>
         </div>
       </div>
 
-      <p style={{ fontFamily: "'Epilogue', sans-serif", fontSize: 12, color: "#999", lineHeight: 1.55, margin: 0 }}>
+      <p style={{ fontFamily: "'Epilogue', sans-serif", fontSize: "0.75rem", color: "#999", lineHeight: 1.55, margin: 0 }}>
         {team.direction}
       </p>
 
       <div style={{ display: "flex", gap: 20, borderTop: "1px solid #2a2a2e", paddingTop: 8, flexWrap: "wrap" }}>
         <div style={{ flex: 1 }}>
-          <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 8, textTransform: "uppercase", letterSpacing: "0.12em", color: "#555", marginBottom: 1 }}>
+          <div style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.5rem", textTransform: "uppercase", letterSpacing: "0.12em", color: "#8a8a8a", marginBottom: 1 }}>
             Removed
           </div>
-          <div style={{ fontFamily: "'Epilogue', sans-serif", fontSize: 11, color: "#666", fontStyle: "italic" }}>
+          <div style={{ fontFamily: "'Epilogue', sans-serif", fontSize: "0.6875rem", color: "#8a8a8a", fontStyle: "italic" }}>
             {team.removed}
           </div>
         </div>
       </div>
 
       {team.special && (
-        <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 10, color: "#aaa", backgroundColor: "#252528", padding: "7px 10px", borderRadius: 3, lineHeight: 1.4 }}>
+        <div style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.625rem", color: "#aaa", backgroundColor: "#252528", padding: "7px 10px", borderRadius: 3, lineHeight: 1.4 }}>
           ✦ {team.special}
         </div>
       )}
@@ -503,23 +507,23 @@ export default function F1LiveryDesigns() {
       <div style={{ backgroundColor: "#0a0a0a", padding: "48px 40px 44px", position: "relative", overflow: "hidden" }}>
         <div style={{ position: "absolute", top: -40, right: -40, width: 420, height: 300, background: "linear-gradient(135deg, rgba(220,0,0,0.12), rgba(255,128,0,0.08), rgba(0,92,45,0.08), rgba(180,151,189,0.12), rgba(218,165,32,0.1))", filter: "blur(70px)", borderRadius: "50%" }} />
         <div style={{ position: "relative", maxWidth: 1200, margin: "0 auto" }}>
-          <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 11, textTransform: "uppercase", letterSpacing: "0.2em", color: "#666", marginBottom: 12 }}>
+          <div style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.6875rem", textTransform: "uppercase", letterSpacing: "0.2em", color: "#8a8a8a", marginBottom: 12 }}>
             Design System · 2026 Season
           </div>
-          <h1 style={{ fontSize: 42, fontWeight: 900, color: "#fff", margin: 0, letterSpacing: "-0.03em", lineHeight: 1.1 }}>
+          <h1 style={{ fontSize: "2.625rem", fontWeight: 900, color: "#fff", margin: 0, letterSpacing: "-0.03em", lineHeight: 1.1 }}>
             F1 Livery Designs
           </h1>
-          <p style={{ fontSize: 14, color: "#888", marginTop: 16, maxWidth: 540, lineHeight: 1.55 }}>
+          <p style={{ fontSize: "0.875rem", color: "#888", marginTop: 16, maxWidth: 540, lineHeight: 1.55 }}>
             Complete color direction for all 11 teams on the 2026 grid.
             Each swatch represents the proportional color scheme with custom
             treatments per team.
           </p>
 
           <div style={{ display: "flex", gap: 24, marginTop: 24, flexWrap: "wrap" }}>
-            <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 11, color: "#555" }}>
+            <div style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.6875rem", color: "#8a8a8a" }}>
               <span style={{ color: "#fff", fontWeight: 500 }}>11</span> Teams
             </div>
-            <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 11, color: "#555" }}>
+            <div style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.6875rem", color: "#8a8a8a" }}>
               <span style={{ color: "#fff", fontWeight: 500 }}>11</span> Confirmed
             </div>
           </div>
@@ -538,10 +542,10 @@ export default function F1LiveryDesigns() {
       {/* Footer */}
       <div style={{ borderTop: "1px solid #2a2a2e", padding: "24px 40px", maxWidth: 1200, margin: "0 auto" }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 12 }}>
-          <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 10, color: "#444", textTransform: "uppercase", letterSpacing: "0.1em" }}>
+          <div style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.625rem", color: "#8a8a8a", textTransform: "uppercase", letterSpacing: "0.1em" }}>
             @tgulls · F1 2026 Livery Design System
           </div>
-          <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 10, color: "#444" }}>
+          <div style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.625rem", color: "#8a8a8a" }}>
             March 2026
           </div>
         </div>
