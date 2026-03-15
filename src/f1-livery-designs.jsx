@@ -257,12 +257,12 @@ const teams = [
     subtitle: "fka Williams",
     direction: "The entire car is a Duracell battery. Copper front third, black rear two-thirds. Hard cut, no gradient.",
     colors: {
-      primary: { name: "Anode Black", hex: "#1A1A1A" },
-      secondary: { name: "Cathode Copper", hex: "#CD7F32" },
+      primary: { name: "Anthracite Anode", hex: "#1A1A1A" },
+      secondary: { name: "Copper Cathode", hex: "#CD7F32" },
     },
     legend: [
-      { shape: "▬", name: "Cathode Copper", hex: "#CD7F32" },
-      { shape: "■", name: "Anode Black", hex: "#1A1A1A" },
+      { shape: "▬", name: "Copper Cathode", hex: "#CD7F32" },
+      { shape: "■", name: "Anthracite Anode", hex: "#1A1A1A" },
     ],
     finish: "Metallic",
     removed: "Williams blue, all heritage elements",
@@ -398,6 +398,7 @@ function TeamCard({ team }) {
   return (
     <div
       style={{
+        flex: 1,
         backgroundColor: "#1e1e22",
         borderRadius: 3,
         padding: "22px 24px 18px",
@@ -467,7 +468,7 @@ function TeamCard({ team }) {
         </div>
       </div>
 
-      <p style={{ fontFamily: "'Epilogue', sans-serif", fontSize: "0.75rem", color: "#999", lineHeight: 1.55, margin: 0 }}>
+      <p style={{ fontFamily: "'Epilogue', sans-serif", fontSize: "0.75rem", color: "#999", lineHeight: 1.55, margin: 0, flex: 1 }}>
         {team.direction}
       </p>
 
@@ -529,7 +530,7 @@ export default function F1LiveryDesigns() {
       <main style={{ maxWidth: 1200, margin: "0 auto", padding: "28px 24px 48px" }}>
         <ul style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(340px, 1fr))", gap: 16, listStyle: "none", padding: 0, margin: 0 }}>
           {allTeams.map((team, i) => (
-            <li key={i}><TeamCard team={team} /></li>
+            <li key={team.name} style={{ display: "flex" }}><TeamCard team={team} /></li>
           ))}
         </ul>
       </main>
