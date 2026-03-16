@@ -324,13 +324,15 @@ function CadillacAccents({ colors }) {
 
 // ─── FLAGS ──────────────────────────────────────────────────────────
 
+const base = import.meta.env.BASE_URL;
+
 const FLAGS = {
-  Italy: "/Flag_of_Italy.svg",
-  "United Kingdom": "/Flag_of_the_United_Kingdom.svg",
-  Austria: "/Flag_of_Austria.svg",
-  Germany: "/Flag_of_Germany.svg",
-  France: "/Flag_of_France.svg",
-  "United States": "/Flag_of_the_United_States.svg",
+  Italy: `${base}Flag_of_Italy.svg`,
+  "United Kingdom": `${base}Flag_of_the_United_Kingdom.svg`,
+  Austria: `${base}Flag_of_Austria.svg`,
+  Germany: `${base}Flag_of_Germany.svg`,
+  France: `${base}Flag_of_France.svg`,
+  "United States": `${base}Flag_of_the_United_States.svg`,
 };
 
 // ─── TEAM DATA ───────────────────────────────────────────────────────
