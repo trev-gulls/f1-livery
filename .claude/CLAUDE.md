@@ -26,7 +26,7 @@ Team data lives in `teams.json`; components and renderer logic in `f1-livery-des
 
 - **Team data** (`teams.json`) — 11 team objects with colors, legend, finish, direction text, country
 - **Renderer lookup** — `RENDERERS` and `TOP_ACCENTS` maps in the component file join data to components
-- **Flag renderers** — Inline SVG components for 6 countries (FlagItaly, FlagUK, FlagAustria, FlagGermany, FlagFrance, FlagUSA) with `FLAGS` lookup map
+- **Flag renderers** — External SVG flag images in `public/` with `FLAGS` lookup map using `import.meta.env.BASE_URL` for path resolution
 - **Finish overlays** — `FINISH_OVERLAYS` config + `FinishOverlay` component rendering diagonal gradient rect overlays for gloss/high-gloss/satin/metallic finishes; matte and anodized have no overlay
 - **Swatch renderers** — SVG components per team (SwatchDefault, SwatchFerrari, SwatchRedBull, SwatchRacingBulls, SwatchDuracell, SwatchHaas, SwatchMercedes, SwatchAudi, SwatchAlpine, SwatchAstonMartin, SwatchCadillac)
 - **Card components** — LiverySwatch, LegendSwatch, LegendItem, SwatchLegend, TeamCard
@@ -40,6 +40,13 @@ Team data lives in `teams.json`; components and renderer logic in `f1-livery-des
 - Each team can specify a custom swatch renderer or use `SwatchDefault`
 - Material gradients on swatches where color names reference non-flat materials (metallic, chrome, anodized) — legends always use flat hex chips
 - Finish overlays applied as diagonal gradient rects for gloss/high-gloss/satin/metallic — matte and anodized use no overlay (flat fill is matte; anodized relies on material gradient)
+
+## Deployment
+
+- **Live URL:** https://trev-gulls.github.io/f1-livery/
+- **Workflow:** `.github/workflows/deploy.yml` — push to `main` triggers build + deploy
+- **Base path:** `base: '/f1-livery/'` in `vite.config.js` — all public asset paths must use `import.meta.env.BASE_URL`
+- **Guide:** `docs/DEPLOY.md`
 
 ## Known Issues
 
