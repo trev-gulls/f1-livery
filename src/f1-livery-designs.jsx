@@ -466,7 +466,6 @@ function TeamCard({ team }) {
             color: "#e8e8e8",
             margin: 0,
             lineHeight: 1.2,
-            letterSpacing: "-0.02em",
             flexShrink: 0,
           }}
         >
@@ -542,7 +541,7 @@ export default function F1LiveryDesigns() {
           <div style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.6875rem", textTransform: "uppercase", letterSpacing: "0.2em", color: "#999", marginBottom: 12 }}>
             Design System · 2026 Season
           </div>
-          <h1 style={{ fontSize: "2.625rem", fontWeight: 900, color: "#fff", margin: 0, letterSpacing: 0, lineHeight: 1.1 }}>
+          <h1 style={{ fontSize: "2.625rem", fontWeight: 900, color: "#fff", margin: 0, letterSpacing: "normal", lineHeight: 1.1 }}>
             F1 Livery Designs
           </h1>
           <div style={{ fontFamily: "'Epilogue', sans-serif", fontSize: "1.125rem", fontWeight: 600, color: "#aaa", marginTop: 10, letterSpacing: "0.02em" }}>
