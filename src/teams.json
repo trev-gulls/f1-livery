@@ -160,7 +160,7 @@
     "name": "Audi",
     "subtitle": "Landscape Livery",
     "country": "Germany",
-    "direction": "Sunset gradient nose to tail - amber horizon through peach and coral into dusky lilac. Matte. Inspired by Audi's landscape advertising.",
+    "direction": "Sunset gradient nose to tail (amber horizon - peach - coral - dusky lilac). Inspired by Audi's advertising.",
     "colors": {
       "primary": { "name": "Dusky Lilac", "hex": "#9882AC" },
       "secondary": { "name": "Amber Glow", "hex": "#E8961F" },
@@ -178,7 +178,7 @@
     "name": "Cadillac",
     "subtitle": "Gold Standard",
     "country": "United States",
-    "direction": "Full glossy yellow. Classic Cadillac crest on rear body/fin. Red and blue from the crest as accents.",
+    "direction": "Full golden glory. Classic Cadillac crest on rear body/fin. Red and blue from the crest as accents.",
     "colors": {
       "primary": { "name": "Cadillac Gold", "hex": "#F5C518" },
       "highlight": { "name": "Cadillac Red", "hex": "#C41E3A" },

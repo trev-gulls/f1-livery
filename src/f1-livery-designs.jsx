@@ -577,7 +577,7 @@ export default function F1LiveryDesigns() {
               <span style={{ color: "#fff", fontWeight: 500 }}>11</span> Teams
             </div>
             <div style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.6875rem", color: "#8a8a8a" }}>
-              <span style={{ color: "#fff", fontWeight: 500 }}>11</span> Confirmed
+              <span style={{ color: "#fff", fontWeight: 500 }}>22</span> Drivers
             </div>
           </div>
         </div>
