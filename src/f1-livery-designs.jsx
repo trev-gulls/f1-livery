@@ -568,6 +568,9 @@ export default function F1LiveryDesigns() {
           <h1 style={{ fontSize: "2.625rem", fontWeight: 900, color: "#fff", margin: 0, letterSpacing: "-0.03em", lineHeight: 1.1 }}>
             F1 Livery Designs
           </h1>
+          <div style={{ fontFamily: "'DM Mono', monospace", fontSize: "0.75rem", color: "#666", marginTop: 8, fontStyle: "italic", letterSpacing: "0.05em" }}>
+            if I were in charge
+          </div>
           <p style={{ fontSize: "0.875rem", color: "#888", marginTop: 16, maxWidth: 540, lineHeight: 1.55 }}>
             Complete color direction for all 11 teams on the 2026 grid.
             Each swatch represents the proportional color scheme with custom
