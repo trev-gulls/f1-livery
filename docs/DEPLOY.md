@@ -5,7 +5,7 @@ The F1 Livery Design System is deployed to GitHub Pages at:
 
 ## How It Works
 
-Pushing to `main` triggers the GitHub Actions workflow (`.github/workflows/deploy.yml`):
+Pushing to `main` triggers the GitHub Actions workflow (`.github/workflows/deploy.yml`), unless the push only touches docs, markdown, or `.claude/` files:
 
 1. Checks out the repo
 2. Installs Bun and dependencies (`bun install --frozen-lockfile`)
