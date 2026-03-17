@@ -29,18 +29,13 @@ Vite is configured with `base: '/f1-livery/'` in `vite.config.js`. All asset pat
 
 ## OG Preview Image
 
-The social sharing preview image is at `public/og-preview.png` (1200x630).
+The social sharing preview image is at `public/og-preview.png`.
 
-To update it:
+To update it, run the capture script with the dev server running:
 
 ```sh
-# With the dev server running:
-"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" \
-  --headless=new \
-  --screenshot=public/og-preview.png \
-  --window-size=1200,630 \
-  --hide-scrollbars \
-  http://localhost:5173/f1-livery/
+bun run dev &
+bun scripts/capture-og.mjs
 ```
 
 ## GitHub Pages Settings
